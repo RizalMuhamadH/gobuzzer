@@ -1,0 +1,173 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Interest extends CI_Controller
+{
+    
+        
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Interest_model');
+        $this->load->library('form_validation');
+    }
+
+    public function index()
+    {
+        $interest = $this->Interest_model->get_all();
+
+        $data = array(
+            'interest_data' => $interest
+        );
+
+        $this->template->load('template','interest_list', $data);
+    }
+
+    public function read($id) 
+    {
+        $row = $this->Interest_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'id' => $row->id,
+		'n_interest' => $row->n_interest,
+	    );
+            $this->template->load('template','interest_read', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('interest'));
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('interest/create_action'),
+	    'id' => set_value('id'),
+	    'n_interest' => set_value('n_interest'),
+	);
+        $this->template->load('template','interest_form', $data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'n_interest' => $this->input->post('n_interest',TRUE),
+	    );
+
+            $this->Interest_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('interest'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Interest_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('interest/update_action'),
+		'id' => set_value('id', $row->id),
+		'n_interest' => set_value('n_interest', $row->n_interest),
+	    );
+            $this->template->load('template','interest_form', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('interest'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('id', TRUE));
+        } else {
+            $data = array(
+		'n_interest' => $this->input->post('n_interest',TRUE),
+	    );
+
+            $this->Interest_model->update($this->input->post('id', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('interest'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Interest_model->get_by_id($id);
+
+        if ($row) {
+            $this->Interest_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('interest'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('interest'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('n_interest', 'n interest', 'trim|required');
+
+	$this->form_validation->set_rules('id', 'id', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function excel()
+    {
+        $this->load->helper('exportexcel');
+        $namaFile = "interest.xls";
+        $judul = "interest";
+        $tablehead = 0;
+        $tablebody = 1;
+        $nourut = 1;
+        //penulisan header
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Disposition: attachment;filename=" . $namaFile . "");
+        header("Content-Transfer-Encoding: binary ");
+
+        xlsBOF();
+
+        $kolomhead = 0;
+        xlsWriteLabel($tablehead, $kolomhead++, "No");
+	xlsWriteLabel($tablehead, $kolomhead++, "N Interest");
+
+	foreach ($this->Interest_model->get_all() as $data) {
+            $kolombody = 0;
+
+            //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
+            xlsWriteNumber($tablebody, $kolombody++, $nourut);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->n_interest);
+
+	    $tablebody++;
+            $nourut++;
+        }
+
+        xlsEOF();
+        exit();
+    }
+
+}
+
+/* End of file Interest.php */
+/* Location: ./application/controllers/Interest.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2018-09-28 08:58:58 */
+/* http://harviacode.com */
