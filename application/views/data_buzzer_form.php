@@ -20,23 +20,60 @@
         </td>
 	    <tr><td>Backround <?php echo form_error('backround') ?></td>
             <td>
-            <select multiple class="form-control select2" multiple="multiple"  data-placeholder="Select a State" name="backround" id="backround">
-                <?php
-                    foreach ($cat_b as $cat):
+            <select multiple name="backround_tags[]" class="form-control select2" multiple="multiple"  data-placeholder="Select a State" id="backround">
+            <?php
+
+                $active = '';
+                $total = count($cat_b);
+
+                $selected = '';
+                // Looping All Tags
+                for ($i=0; $i < $total ; $i++):
+                    // Looping Post_tag jika ada
+                    $p = explode(',', $backround);
+
+                    foreach ($p as $bt){
+                        $active = $bt;
+
+                        if($active == $cat_b[$i]['n_backround']){
+                            $selected = ' selected=selected';
+                            break;
+                        }else{
+                            $selected = '';
+                        }
+                    }
                 ?>
-                <option value="<?php echo $cat->n_backround;?>" <?php if($backround==$cat->id) echo 'selected="selected"'; ?> ><?php echo $cat->n_backround;?></option>
-                <?php endforeach; ?>
+                <option value="<?php echo $cat_b[$i]['n_backround'];?>" <?php echo $selected ?> ><?php echo $cat_b[$i]['n_backround'];?></option>
+                <?php endfor; ?>
             </select>
             <!-- <input type="text" class="form-control" name="backround" id="backround" placeholder="Backround" value="<?php echo $backround; ?>" /> -->
             </td>
 	    <tr><td>Interest <?php echo form_error('interest') ?></td>
             <td>
-                <select multiple class="form-control select2" multiple="multiple"  data-placeholder="Select a State" name="interest" id="interest">
+                <select multiple class="form-control select2" name="interest_tags[] multiple="multiple"  data-placeholder="Select a State" id="interest">
                     <?php
-                        foreach ($cat_i as $catI):
+                         $active = '';
+                         $total = count($cat_i);
+         
+                         $selected = '';
+                         // Looping All Tags
+                         for ($i=0; $i < $total ; $i++):
+                             // Looping Post_tag jika ada
+                             $p = explode(',', $interest);
+         
+                             foreach ($p as $in){
+                                 $active = $in;
+         
+                                 if($active == $cat_i[$i]['n_interest']){
+                                     $selected = ' selected=selected';
+                                     break;
+                                 }else{
+                                     $selected = '';
+                                 }
+                             }
                     ?>
-                    <option value="<?php echo $cat->n_interest;?>" <?php if($backround==$catI->id) echo 'selected="selected"'; ?> ><?php echo $cat->n_interest;?></option>
-                    <?php endforeach; ?>
+                    <option value="<?php echo $cat_i[$i]['n_interest'];?>" <?php echo $selected ?> ><?php echo $cat_i[$i]['n_interest'];?></option>
+                    <?php endfor; ?>
                 </select>
             <!-- <input type="text" class="form-control" name="interest" id="interest" placeholder="Interest" value="<?php echo $interest; ?>" /> -->
             </td>

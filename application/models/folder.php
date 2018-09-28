@@ -3,10 +3,10 @@
 class Folder extends CI_Model {
     function createFolder($dateNow){
 		$newDate = str_replace('-', '', $dateNow);
-		$path = 'assets/img/'.$newDate;
+		$path = 'assets/img/';
 
-		if(!file_exists('./assets/img/'.$newDate)){
-		   mkdir('./assets/img/'.$newDate, 0777, TRUE);
+		if(!file_exists('./assets/img/capture_buzzer')){
+		   mkdir('./assets/img/capture_buzzer', 0777, TRUE);
 		}
 
 		return $path;

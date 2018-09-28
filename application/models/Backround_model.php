@@ -22,6 +22,13 @@ class Backround_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get all
+    function get_br()
+    {
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result_array();
+    }
+
     // get data by id
     function get_by_id($id)
     {

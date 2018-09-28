@@ -66,8 +66,8 @@ class Data_buzzer extends CI_Controller
 	    'gender_audiens' => set_value('gender_audiens'),
 	    'target_audiens' => set_value('target_audiens'),
         'capture_profile' => set_value('capture_profile'),
-        'cat_b' => $this->Backround_model->get_all(),
-        'cat_i' => $this->Interest_model->get_all()
+        'cat_b' => $this->Backround_model->get_br(),
+        'cat_i' => $this->Interest_model->get_in()
         
 	);
         $this->template->load('template','data_buzzer_form', $data);
@@ -102,12 +102,26 @@ class Data_buzzer extends CI_Controller
                 // echo "</pre>";
             }
 
+            $backround_tags = $this->input->post('backround_tags');
+            $br = '';
+            foreach ($backround_tags as $backround) {
+                $br = $br.$backround.",";
+                
+            }
+
+            $interest_tags = $this->input->post('interest_tags');
+            $it = '';
+            foreach ($interest_tags as $interest) {
+                $it = $it.$interest.",";
+                
+            }
+
             $data = array(
 		'domisili' => $this->input->post('domisili',TRUE),
 		'akun' => $this->input->post('akun',TRUE),
 		'follower' => $this->input->post('follower',TRUE),
-		'backround' => $this->input->post('backround',TRUE),
-		'interest' => $this->input->post('interest',TRUE),
+		'backround' => $br,
+		'interest' => $it,
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
@@ -138,8 +152,8 @@ class Data_buzzer extends CI_Controller
 		'gender_audiens' => set_value('gender_audiens', $row->gender_audiens),
 		'target_audiens' => set_value('target_audiens', $row->target_audiens),
 		'capture_profile' => set_value('capture_profile', $row->capture_profile),
-        'cat_b' => $this->Backround_model->get_all(),
-        'cat_i' => $this->Interest_model->get_all()
+        'cat_b' => $this->Backround_model->get_br(),
+        'cat_i' => $this->Interest_model->get_in()
 	    );
             $this->template->load('template','data_buzzer_form', $data);
         } else {
