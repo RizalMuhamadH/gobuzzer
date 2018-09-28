@@ -192,12 +192,26 @@ class Data_buzzer extends CI_Controller
                 // echo "</pre>";
             }
 
+            $backround_tags = $this->input->post('backround_tags');
+            $br = '';
+            foreach ($backround_tags as $backround) {
+                $br = $br.$backround.",";
+                
+            }
+
+            $interest_tags = $this->input->post('interest_tags');
+            $it = '';
+            foreach ($interest_tags as $interest) {
+                $it = $it.$interest.",";
+                
+            }
+
             $data = array(
 		'domisili' => $this->input->post('domisili',TRUE),
 		'akun' => $this->input->post('akun',TRUE),
 		'follower' => $this->input->post('follower',TRUE),
-		'backround' => $this->input->post('backround',TRUE),
-		'interest' => $this->input->post('interest',TRUE),
+		'backround' => $br,
+		'interest' => $it,
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
