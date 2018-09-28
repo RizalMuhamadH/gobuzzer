@@ -15,7 +15,7 @@
 	    <tr><td>Client</td><td><?php echo $client; ?></td></tr>
 	    <tr><td>Gender Audiens</td><td><?php echo $gender_audiens; ?></td></tr>
 	    <tr><td>Target Audiens</td><td><?php echo $target_audiens; ?></td></tr>
-	    <tr><td>Capture Profile</td><td><?php echo $capture_profile; ?></td></tr>
+	    <tr><td>Capture Profile</td><td><img src="<?php echo base_url().$capture_profile ?>"/></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('data_buzzer') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
         </div><!-- /.box-body -->

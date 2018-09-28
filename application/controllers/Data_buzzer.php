@@ -11,6 +11,9 @@ class Data_buzzer extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Data_buzzer_model');
+        $this->load->model('Backround_model');
+        $this->load->model('Interest_model');
+        $this->load->model('folder');
         $this->load->library('form_validation');
     }
 
@@ -62,7 +65,10 @@ class Data_buzzer extends CI_Controller
 	    'client' => set_value('client'),
 	    'gender_audiens' => set_value('gender_audiens'),
 	    'target_audiens' => set_value('target_audiens'),
-	    'capture_profile' => set_value('capture_profile'),
+        'capture_profile' => set_value('capture_profile'),
+        'cat_b' => $this->Backround_model->get_all(),
+        'cat_i' => $this->Interest_model->get_all()
+        
 	);
         $this->template->load('template','data_buzzer_form', $data);
     }
@@ -71,9 +77,31 @@ class Data_buzzer extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
+        // if ($this->form_validation->run() == FALSE) {
+        //     $this->create();
+        // } else {
+            $img = '';
+            $path = $this->folder->createFolder(date('y-m-d'));
+
+            // setting konfigurasi upload
+            $config['upload_path'] = './'.$path;
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            // $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('capture_profile')) {
+                $error = $this->upload->display_errors();
+                // menampilkan pesan error
+                // print_r($error);
+            } else {
+                $result = $this->upload->data();
+                $img = $path.'/'.$result['file_name'];
+                // echo "<pre>";
+                // print_r($result);
+                // echo "</pre>";
+            }
+
             $data = array(
 		'domisili' => $this->input->post('domisili',TRUE),
 		'akun' => $this->input->post('akun',TRUE),
@@ -83,13 +111,13 @@ class Data_buzzer extends CI_Controller
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
-		'capture_profile' => $this->input->post('capture_profile',TRUE),
+		'capture_profile' => $img,
 	    );
 
             $this->Data_buzzer_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('data_buzzer'));
-        }
+        // }
     }
     
     public function update($id) 
@@ -122,9 +150,32 @@ class Data_buzzer extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id', TRUE));
-        } else {
+        // if ($this->form_validation->run() == FALSE) {
+        //     $this->update($this->input->post('id', TRUE));
+        // } else {
+
+            $img = $this->input->post('path',TRUE);
+            $path = $this->folder->createFolder(date('y-m-d'));
+
+            // setting konfigurasi upload
+            $config['upload_path'] = './'.$path;
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            // $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('capture_profile')) {
+                $error = $this->upload->display_errors();
+                // menampilkan pesan error
+                // print_r($error);
+            } else {
+                $result = $this->upload->data();
+                $img = $path.'/'.$result['file_name'];
+                // echo "<pre>";
+                // print_r($result);
+                // echo "</pre>";
+            }
+
             $data = array(
 		'domisili' => $this->input->post('domisili',TRUE),
 		'akun' => $this->input->post('akun',TRUE),
@@ -134,13 +185,13 @@ class Data_buzzer extends CI_Controller
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
-		'capture_profile' => $this->input->post('capture_profile',TRUE),
+		'capture_profile' => $img,
 	    );
 
             $this->Data_buzzer_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('data_buzzer'));
-        }
+        // }
     }
     
     public function delete($id) 

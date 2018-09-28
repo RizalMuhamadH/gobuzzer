@@ -1,4 +1,9 @@
-
+        <style type="text/css">
+        img  {
+            width: 75px;
+            text-align: center;
+        }
+        </style>
         <!-- Main content -->
         <section class='content'>
           <div class='row'>
@@ -35,14 +40,14 @@
                 <tr>
 		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $data_buzzer->domisili ?></td>
-		    <td><?php echo $data_buzzer->akun ?></td>
+		    <td> <a href="<?php echo site_url('data_buzzer/read/'.$data_buzzer->id) ?>"> <?php echo $data_buzzer->akun ?> </a></td>
 		    <td><?php echo $data_buzzer->follower ?></td>
 		    <td><?php echo $data_buzzer->backround ?></td>
 		    <td><?php echo $data_buzzer->interest ?></td>
 		    <td><?php echo $data_buzzer->client ?></td>
 		    <td><?php echo $data_buzzer->gender_audiens ?></td>
 		    <td><?php echo $data_buzzer->target_audiens ?></td>
-		    <td><?php echo $data_buzzer->capture_profile ?></td>
+		    <td><img src="<?php echo base_url().$data_buzzer->capture_profile ?>"/></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
 			echo anchor(site_url('data_buzzer/read/'.$data_buzzer->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-danger btn-sm')); 
