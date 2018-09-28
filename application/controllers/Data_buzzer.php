@@ -138,6 +138,8 @@ class Data_buzzer extends CI_Controller
 		'gender_audiens' => set_value('gender_audiens', $row->gender_audiens),
 		'target_audiens' => set_value('target_audiens', $row->target_audiens),
 		'capture_profile' => set_value('capture_profile', $row->capture_profile),
+        'cat_b' => $this->Backround_model->get_all(),
+        'cat_i' => $this->Interest_model->get_all()
 	    );
             $this->template->load('template','data_buzzer_form', $data);
         } else {

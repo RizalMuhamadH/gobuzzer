@@ -20,37 +20,34 @@
         </td>
 	    <tr><td>Backround <?php echo form_error('backround') ?></td>
             <td>
-            <select name="backround" id="backround">
+            <select multiple class="form-control select2" multiple="multiple"  data-placeholder="Select a State" name="backround" id="backround">
                 <?php
                     foreach ($cat_b as $cat):
                 ?>
-                <option value="<?php echo $cat->id;?>" <?php if($backround==$cat->id) echo 'selected="selected"'; ?> ><?php echo $cat->n_backround;?></option>
+                <option value="<?php echo $cat->n_backround;?>" <?php if($backround==$cat->id) echo 'selected="selected"'; ?> ><?php echo $cat->n_backround;?></option>
                 <?php endforeach; ?>
             </select>
-            <!-- <div class="form-group">
-                <select class="form-control" multiple data-placeholder="Select a State">
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div> -->
             <!-- <input type="text" class="form-control" name="backround" id="backround" placeholder="Backround" value="<?php echo $backround; ?>" /> -->
             </td>
 	    <tr><td>Interest <?php echo form_error('interest') ?></td>
-            <td><input type="text" class="form-control" name="interest" id="interest" placeholder="Interest" value="<?php echo $interest; ?>" />
-        </td>
+            <td>
+                <select multiple class="form-control select2" multiple="multiple"  data-placeholder="Select a State" name="interest" id="interest">
+                    <?php
+                        foreach ($cat_i as $catI):
+                    ?>
+                    <option value="<?php echo $cat->n_interest;?>" <?php if($backround==$catI->id) echo 'selected="selected"'; ?> ><?php echo $cat->n_interest;?></option>
+                    <?php endforeach; ?>
+                </select>
+            <!-- <input type="text" class="form-control" name="interest" id="interest" placeholder="Interest" value="<?php echo $interest; ?>" /> -->
+            </td>
 	    <tr><td>Client <?php echo form_error('client') ?></td>
             <td><input type="text" class="form-control" name="client" id="client" placeholder="Client" value="<?php echo $client; ?>" />
         </td>
 	    <tr><td>Gender Audiens <?php echo form_error('gender_audiens') ?></td>
         <td>
             <select name="gender_audiens" id="gender_audiens">
-                <option value="L" <?php if($gender_audiens == 'L') echo 'selected="selected"'; ?>>L</option>
-                <option value="P" <?php if($gender_audiens == 'P') echo 'selected="selected"'; ?>>P</option>
+                <option value="L" <?php if($gender_audiens == 'L') echo 'selected="selected"'; ?>>Laki-laki</option>
+                <option value="P" <?php if($gender_audiens == 'P') echo 'selected="selected"'; ?>>Perempuan</option>
             </select>
             <!-- <td><input type="text" class="form-control" name="gender_audiens" id="gender_audiens" placeholder="Gender Audiens" value="<?php echo $gender_audiens; ?>" /> -->
         </td>
@@ -71,3 +68,9 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+        <script>
+            $(function (){
+                //Initialize Select2 Elements
+                $('.select2').select2()
+            })    
+        </script>
