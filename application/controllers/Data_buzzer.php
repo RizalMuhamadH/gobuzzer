@@ -43,6 +43,7 @@ class Data_buzzer extends CI_Controller
 		'gender_audiens' => $row->gender_audiens,
 		'target_audiens' => $row->target_audiens,
 		'capture_profile' => $row->capture_profile,
+		'price' => $row->price,
 	    );
             $this->template->load('template','data_buzzer_read', $data);
         } else {
@@ -66,6 +67,7 @@ class Data_buzzer extends CI_Controller
 	    'gender_audiens' => set_value('gender_audiens'),
 	    'target_audiens' => set_value('target_audiens'),
         'capture_profile' => set_value('capture_profile'),
+        'price' => set_value('price'),
         'cat_b' => $this->Backround_model->get_br(),
         'cat_i' => $this->Interest_model->get_in()
         
@@ -125,6 +127,7 @@ class Data_buzzer extends CI_Controller
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
+		'price' => $this->input->post('price',TRUE),
 		'capture_profile' => $img,
 	    );
 
@@ -152,6 +155,7 @@ class Data_buzzer extends CI_Controller
 		'gender_audiens' => set_value('gender_audiens', $row->gender_audiens),
 		'target_audiens' => set_value('target_audiens', $row->target_audiens),
 		'capture_profile' => set_value('capture_profile', $row->capture_profile),
+		'price' => set_value('price', $row->price),
         'cat_b' => $this->Backround_model->get_br(),
         'cat_i' => $this->Interest_model->get_in()
 	    );
@@ -215,6 +219,7 @@ class Data_buzzer extends CI_Controller
 		'client' => $this->input->post('client',TRUE),
 		'gender_audiens' => $this->input->post('gender_audiens',TRUE),
 		'target_audiens' => $this->input->post('target_audiens',TRUE),
+		'price' => $this->input->post('price',TRUE),
 		'capture_profile' => $img,
 	    );
 
@@ -249,6 +254,7 @@ class Data_buzzer extends CI_Controller
 	$this->form_validation->set_rules('gender_audiens', 'gender audiens', 'trim|required');
 	$this->form_validation->set_rules('target_audiens', 'target audiens', 'trim|required');
 	$this->form_validation->set_rules('capture_profile', 'capture profile', 'trim|required');
+	$this->form_validation->set_rules('price', 'price', 'trim|required');
 
 	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -285,6 +291,7 @@ class Data_buzzer extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Gender Audiens");
 	xlsWriteLabel($tablehead, $kolomhead++, "Target Audiens");
 	xlsWriteLabel($tablehead, $kolomhead++, "Capture Profile");
+	xlsWriteLabel($tablehead, $kolomhead++, "Price");
 
 	foreach ($this->Data_buzzer_model->get_all() as $data) {
             $kolombody = 0;
@@ -300,6 +307,7 @@ class Data_buzzer extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->gender_audiens);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->target_audiens);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->capture_profile);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->price);
 
 	    $tablebody++;
             $nourut++;

@@ -41,6 +41,7 @@ class Data_buzzer_model extends CI_Model
 	$this->db->or_like('gender_audiens', $q);
 	$this->db->or_like('target_audiens', $q);
 	$this->db->or_like('capture_profile', $q);
+	$this->db->or_like('price', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -58,6 +59,7 @@ class Data_buzzer_model extends CI_Model
 	$this->db->or_like('gender_audiens', $q);
 	$this->db->or_like('target_audiens', $q);
 	$this->db->or_like('capture_profile', $q);
+	$this->db->or_like('price', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

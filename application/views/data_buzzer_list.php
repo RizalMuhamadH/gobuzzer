@@ -28,6 +28,7 @@
 		    <th>Gender Audiens</th>
 		    <th>Target Audiens</th>
 		    <th>Capture Profile</th>
+		    <th>Price</th>
 		    <th>Action</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
 		    <td><?php echo $data_buzzer->gender_audiens ?></td>
 		    <td><?php echo $data_buzzer->target_audiens ?></td>
 		    <td><img src="<?php echo base_url().$data_buzzer->capture_profile ?>"/></td>
+		    <td><?php echo $data_buzzer->price ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
 			echo anchor(site_url('data_buzzer/read/'.$data_buzzer->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-danger btn-sm')); 

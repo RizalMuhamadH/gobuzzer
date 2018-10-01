@@ -23,34 +23,34 @@
             <select multiple name="backround_tags[]" class="form-control select2" multiple="multiple"  data-placeholder="Select a State" id="backround">
             <?php
 
-                $active = '';
-                $total = count($cat_b);
+            $active = '';
+            $total = count($cat_b);
 
-                $selected = '';
-                // Looping All Tags
-                for ($i=0; $i < $total ; $i++):
-                    // Looping Post_tag jika ada
-                    $p = explode(',', $backround);
+            $selected = '';
+            // Looping All Tags
+            for ($i=0; $i < $total ; $i++):
+                // Looping Post_tag jika ada
+                $p = explode(',', $backround);
 
-                    foreach ($p as $bt){
-                        $active = $bt;
+                foreach ($p as $bt){
+                    $active = $bt;
 
-                        if($active == $cat_b[$i]['n_backround']){
-                            $selected = ' selected=selected';
-                            break;
-                        }else{
-                            $selected = '';
-                        }
+                    if($active == $cat_b[$i]['n_backround']){
+                        $selected = ' selected=selected';
+                        break;
+                    }else{
+                        $selected = '';
                     }
-                ?>
-                <option value="<?php echo $cat_b[$i]['n_backround'];?>" <?php echo $selected ?> ><?php echo $cat_b[$i]['n_backround'];?></option>
-                <?php endfor; ?>
+                }
+            ?>
+            <option value="<?php echo $cat_b[$i]['n_backround'];?>" <?php echo $selected ?> ><?php echo $cat_b[$i]['n_backround'];?></option>
+            <?php endfor; ?>
             </select>
             <!-- <input type="text" class="form-control" name="backround" id="backround" placeholder="Backround" value="<?php echo $backround; ?>" /> -->
             </td>
 	    <tr><td>Interest <?php echo form_error('interest') ?></td>
             <td>
-                <select multiple class="form-control select2" name="interest_tags[] multiple="multiple"  data-placeholder="Select a State" id="interest">
+                <select multiple class="form-control select2" name="interest_tags[]" multiple="multiple"  data-placeholder="Select a State" id="interest">
                     <?php
                          $active = '';
                          $total = count($cat_i);
@@ -91,6 +91,9 @@
 	    <tr><td>Target Audiens <?php echo form_error('target_audiens') ?></td>
             <td><input type="text" class="form-control" name="target_audiens" id="target_audiens" placeholder="Target Audiens" value="<?php echo $target_audiens; ?>" />
         </td>
+        <tr><td>Price <?php echo form_error('price') ?></td>
+            <td><input type="text" class="form-control" name="price" id="price" placeholder="Price" value="<?php echo $price; ?>" />
+        </td>
 	    <tr><td>Capture Profile <?php echo form_error('capture_profile') ?></td>
             <td><input type="file" class="form-control" name="capture_profile" id="capture_profile" placeholder="Capture Profile" value="<?php echo $capture_profile; ?>" />
         </td>
@@ -105,9 +108,28 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
-        <script>
+        <script type="text/javascript">
             $(function (){
                 //Initialize Select2 Elements
-                $('.select2').select2()
+                $('.select2').select2({
+                    
+                    // alert('OK');
+                    // type:"POST",
+		            placeholder: 'searching',
+                    ajax: {
+                        url: '<?php echo site_url("backround/getBackround"); ?>',
+                        dataType :'json',
+                        delay:250,
+                        processResults : function(data){
+                            return {
+                                results : data
+                            };
+                        },
+                        
+
+                        cache: true
+
+                    }
+                });
             })    
         </script>
