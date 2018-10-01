@@ -22,6 +22,26 @@ class Backround_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    public function get_all_backround($search){
+        $query = $this->db->query("SELECT * FROM backround WHERE n_backround LIKE '%$search%'");
+        $result = $query->num_rows;
+
+        $json = [];
+
+        if ( $result > 0 ){
+
+            while ( $rows = $query->fetch_assoc() ) {
+                $json[] = ['id' => $rows['id'],'text' => $rows['n_backround']];
+            }
+        }
+        else{
+
+            $json[] =  array('id' => '', 'text' => 'No results found...');
+
+        }
+        return $json;
+    }
+
     // get all
     function get_br()
     {

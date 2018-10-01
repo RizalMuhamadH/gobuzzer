@@ -25,6 +25,12 @@ class Backround extends CI_Controller
         $this->template->load('template','backround_list', $data);
     }
 
+    public function getBackround(){
+        $q = isset( $_GET['q'] ) ? $_GET['q'] : '';
+
+        echo json_encode($this->Backround_model->get_all_backround($q));
+    }
+
     public function read($id) 
     {
         $row = $this->Backround_model->get_by_id($id);
