@@ -65,16 +65,16 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <img src="<?php echo base_url()?>template/dist/img/user2-160x160a.jpg" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">DATA BUZZER</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="<?php echo base_url()?>template/dist/img/user2-160x160a.jpg" class="img-circle" alt="User Image">
                                         <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                            DATABUZZER
+                                            <small>AYOMEDIANETWORK</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -118,10 +118,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo base_url()?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="<?php echo base_url()?>template/dist/img/user2-160x160a.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p>DATA BUZZER</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -196,9 +196,9 @@
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.0
+                    <b>Version</b> 0.0.1
                 </div>
-                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2018 <a href="http://Ayomedianetwork.com">Ayomedia Network</a>.</strong> All rights reserved.
             </footer>
 
             <!-- Add the sidebar's background. This div must be placed
