@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 28, 2018 at 10:23 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Host: 127.0.0.1
+-- Generation Time: Oct 09, 2018 at 12:03 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,14 @@ CREATE TABLE `backround` (
   `id` int(20) NOT NULL,
   `n_backround` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `backround`
+--
+
+INSERT INTO `backround` (`id`, `n_backround`) VALUES
+(1, 'value'),
+(2, 'value 2');
 
 -- --------------------------------------------------------
 
@@ -71,8 +79,20 @@ CREATE TABLE `data_buzzer` (
   `client` varchar(50) NOT NULL,
   `gender_audiens` varchar(100) NOT NULL,
   `target_audiens` varchar(50) NOT NULL,
-  `capture_profile` varchar(50) NOT NULL
+  `capture_profile` varchar(50) NOT NULL,
+  `price` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_buzzer`
+--
+
+INSERT INTO `data_buzzer` (`id`, `domisili`, `akun`, `follower`, `backround`, `interest`, `client`, `gender_audiens`, `target_audiens`, `capture_profile`, `price`) VALUES
+(1, 'Aceh', 'Ootd_aneukaceh', '57.695', 'Foto remaja perempuan Aceh', 'Fashion,Wisata,Modeling,Hijab,', 'bank bjb (perbankan),pengusahamuda21 (bisnis onlin', '', '18 - 24', 'assets/img/capture_buzzer/1.jpg', ' Rp   50,000 '),
+(2, 'Aceh', 'Dara_acehmameh', '108.67', 'Foto remaja perempuan Aceh', 'Fashion,Wisata,Modeling,Hijab', 'bank bjb (perbankan),sidiq_hp ( gadget),anne_dns (', '', '25-34', 'assets/img/capture_buzzer/2.jpg', 'Rp   25,000 '),
+(3, 'Aceh', 'Annisayamanii', '121.08', 'Personal Blog', 'Hijab,Modeling,Beauty,Fashion', 'nazifa_couplestore  ( fashion muslim),clambypillow', '', '18 - 24', 'assets/img/capture_buzzer/3.jpg', 'Rp   90,000'),
+(4, 'Aceh', 'Pristiaayu', '101.127', 'Personal Blog', 'Hijab,Modeling,Travelling,Fashion,', 'chikashop.kosmetik (kosmetik),aheryawan (personal ', '', '18 - 24', 'assets/img/capture_buzzer/4.jpg', 'Rp 100,000 '),
+(5, 'Aceh', 'Vingkananggraini', '103.489', 'Personal Blog', 'Hijab,Modeling,Fashion,', 'bagshop.ey (fashion),funbananaaa (kuliner),assyiff', '', '18 - 24', 'assets/img/capture_buzzer/5.jpg', 'Rp   80,000 ');
 
 -- --------------------------------------------------------
 
@@ -7314,6 +7334,24 @@ INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `domisili`
+--
+
+CREATE TABLE `domisili` (
+  `id` int(11) NOT NULL,
+  `n_domisili` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `domisili`
+--
+
+INSERT INTO `domisili` (`id`, `n_domisili`) VALUES
+(1, 'Bandung');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groups`
 --
 
@@ -7378,7 +7416,8 @@ INSERT INTO `menu` (`id`, `name`, `link`, `icon`, `is_active`, `is_parent`) VALU
 (15, 'menu management', 'menu', 'fa fa-list-alt', 1, 0),
 (18, 'Data Buzzer', 'data_buzzer', 'fa fa-database', 1, 0),
 (19, 'Backroung', 'backround', 'fa fa-cubes', 1, 0),
-(20, 'Interest', 'interest', 'fa fa-headphones', 1, 0);
+(20, 'Interest', 'interest', 'fa fa-headphones', 1, 0),
+(22, 'Domisili', 'domisili', 'fa fa-globe', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -83128,6 +83167,12 @@ ALTER TABLE `districts`
   ADD KEY `districts_id_index` (`regency_id`);
 
 --
+-- Indexes for table `domisili`
+--
+ALTER TABLE `domisili`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
@@ -83194,7 +83239,7 @@ ALTER TABLE `villages`
 -- AUTO_INCREMENT for table `backround`
 --
 ALTER TABLE `backround`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `client_ayo`
@@ -83212,7 +83257,13 @@ ALTER TABLE `client_buzzer`
 -- AUTO_INCREMENT for table `data_buzzer`
 --
 ALTER TABLE `data_buzzer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `domisili`
+--
+ALTER TABLE `domisili`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -83236,7 +83287,7 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
