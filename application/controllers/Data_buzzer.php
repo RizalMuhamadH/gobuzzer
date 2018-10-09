@@ -13,6 +13,7 @@ class Data_buzzer extends CI_Controller
         $this->load->model('Data_buzzer_model');
         $this->load->model('Backround_model');
         $this->load->model('Interest_model');
+        $this->load->model('Domisili_model');
         $this->load->model('folder');
         $this->load->library('form_validation');
     }
@@ -69,7 +70,8 @@ class Data_buzzer extends CI_Controller
         'capture_profile' => set_value('capture_profile'),
         'price' => set_value('price'),
         'cat_b' => $this->Backround_model->get_br(),
-        'cat_i' => $this->Interest_model->get_in()
+        'cat_i' => $this->Interest_model->get_in(),
+        'dom' => $this->Domisili_model->get_all()
         
 	);
         $this->template->load('template','data_buzzer_form', $data);
@@ -157,7 +159,8 @@ class Data_buzzer extends CI_Controller
 		'capture_profile' => set_value('capture_profile', $row->capture_profile),
 		'price' => set_value('price', $row->price),
         'cat_b' => $this->Backround_model->get_br(),
-        'cat_i' => $this->Interest_model->get_in()
+        'cat_i' => $this->Interest_model->get_in(),
+        'dom' => $this->Domisili_model->get_all()
 	    );
             $this->template->load('template','data_buzzer_form', $data);
         } else {

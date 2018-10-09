@@ -88,6 +88,17 @@
             </select>
             <!-- <td><input type="text" class="form-control" name="gender_audiens" id="gender_audiens" placeholder="Gender Audiens" value="<?php echo $gender_audiens; ?>" /> -->
         </td>
+        <tr><td>Domisili <?php echo form_error('domisili') ?></td>
+        <td>
+            <select name="domisili" id="domisili">
+                <?php
+                    foreach ($dom as $d):
+                ?>
+                <option value="<?php echo $d->n_domisili;?>" <?php if($domisili==$d->n_domisili) echo 'selected="selected"'; ?> ><?php echo $d->n_domisili;?></option>
+                <?php endforeach; ?>
+            </select>
+            <!-- <td><input type="text" class="form-control" name="gender_audiens" id="gender_audiens" placeholder="Gender Audiens" value="<?php echo $gender_audiens; ?>" /> -->
+        </td>
 	    <tr><td>Target Audiens <?php echo form_error('target_audiens') ?></td>
             <td><input type="text" class="form-control" name="target_audiens" id="target_audiens" placeholder="Target Audiens" value="<?php echo $target_audiens; ?>" />
         </td>
